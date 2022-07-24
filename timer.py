@@ -50,9 +50,44 @@ class timer:
                     return 'time has reached to zero'
         return format_string(self.__hours,self.__minutes,self.__seconds)
  
-timer1=timer(23,59,00)        
+# timer1=timer(23,59,00)        
         
 
-print(timer1.previous_second())
-print(timer1.previous_second())
-print(timer1.previous_second())
+# print(timer1.previous_second())
+# print(timer1.previous_second())
+# print(timer1.previous_second())
+
+
+class weeker:
+    names={1:"MON",2:"TUE",3:"WED",4:"THU",5:"FRI",6:"SAT",0:"SUN"}
+    def __init__(self,name) -> None:
+        
+        if name in weeker.names.values():
+           self.__name = name
+        else:
+            raise Exception('Weekday.error')
+    
+    def __str__(self) -> str:
+        return str(self.__name)
+        
+    def add_days(self,n):
+       key=list(weeker.names.keys())[list(weeker.names.values()).index(self.__name)]
+       key += (n%7)
+       if key >6:
+          key -=7
+       self.__name=list(weeker.names.values())[list(weeker.names.keys()).index(key)]
+       return self.__name
+    
+    def subtract_days(self,n):
+        key=list(weeker.names.keys())[list(weeker.names.values()).index(self.__name)]
+        if key ==0 and n%7 !=0 :
+            key=7
+        
+        key -= (n%7)       
+        if key<0:
+            key +=7
+        self.__name=list(weeker.names.values())[list(weeker.names.keys()).index(key)]
+        return self.__name
+    
+week =weeker("TUE")
+print(week.subtract_days(89))
